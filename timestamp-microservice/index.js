@@ -1,13 +1,15 @@
 const express = require('express');
 
-const port = process.argv[2] || 3000;
 const { parseDate } = require('./date-utils');
 
-const app = express();
+module.exports = addTimeStampMS;
 
-app.all('/:dateStr', ({ params: { dateStr } }, res) => {
-  res.end(JSON.stringify(parseDate(dateStr)));
-});
+function addTimeStampMS(app, root) {
+console.log(root);
+  app.all(`${root}/:dateStr`, ({ params: { dateStr } }, res) => {
+    res.end(JSON.stringify(parseDate(dateStr)));
+  });
 
-app.listen(port);
+}
+
 

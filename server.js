@@ -1,11 +1,11 @@
-var express = require('express')
-const port = process.argv[2] || 3000;
-var app = express();
+const express = require('express');
+const path = require('path');
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+const port = process.env.PORT || 3000;
+const app = express();
+
+require('./timestamp-microservice/')(app,'/timestamp-microservice');
 
 app.listen(port, function () {
-  console.log('Example app listening on port', port)
+  console.log('listening on port', port)
 });
