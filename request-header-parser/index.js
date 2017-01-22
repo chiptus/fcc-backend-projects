@@ -3,8 +3,8 @@ const p = require('useragent');
 module.exports = addRequestHeaderParser;
 
 function addRequestHeaderParser(app, root = '') {
-  console.log(root);
   app.get(`${root}/`, (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(parseReq(req)));
   })
 }
